@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#5b0712"><meta name="description" content="حكاية: تعلم فن السرد والكتابة والحكي الشفهي">
+<link rel="manifest" href="manifest.webmanifest"><link rel="icon" href="icons/icon-192.png">
+<title>حكاية | HIKAYA</title>
+<style>
+:root{--wine:#650b19;--gold:#d8ad61;--cream:#f8f1e8;--ink:#2c2020;--muted:#806e68}
+*{box-sizing:border-box}body{margin:0;background:var(--cream);color:var(--ink);font-family:system-ui,"Noto Naskh Arabic",sans-serif;line-height:1.8}
+header{background:var(--wine);color:white;padding:22px 18px 28px;border-radius:0 0 26px 26px}
+header h1{margin:0;font-size:27px}header p{margin:4px 0 0;color:#f0d9d0}
+main{max-width:720px;margin:auto;padding:18px}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-top:-12px}
+.stat,.card{background:white;border:1px solid #eadfd5;border-radius:18px;padding:15px;box-shadow:0 4px 16px #4520160b}
+.stat{text-align:center}.stat b{display:block;color:var(--wine);font-size:22px}
+nav{display:flex;gap:8px;overflow:auto;margin:18px 0}nav button,.btn{border:0;border-radius:12px;padding:10px 15px;background:#eadbd3;color:var(--wine);font-weight:700;cursor:pointer;white-space:nowrap}
+nav button.active,.btn.primary{background:var(--wine);color:white}
+h2{font-size:21px;margin:8px 0}h3{font-size:17px;margin:4px 0}
+.card{margin:12px 0}.muted{color:var(--muted);font-size:14px}
+input,textarea,select{width:100%;padding:12px;border:1px solid #dfd1c8;border-radius:12px;background:#fffaf6;font:inherit;margin:7px 0;color:var(--ink)}
+textarea{min-height:150px;resize:vertical}.row{display:flex;gap:8px;flex-wrap:wrap}.row>*{flex:1}
+.tag{display:inline-block;background:#f5e9dc;color:#7c3d35;padding:3px 10px;border-radius:20px;font-size:13px}
+.lesson li{margin:7px 0}.story{border-top:1px solid #eee2d9;padding:10px 0}.hidden{display:none}
+footer{text-align:center;color:var(--muted);font-size:12px;padding:25px}
+</style></head>
+<body>
+<header><h1>📖 حكاية | HIKAYA</h1><p>تعلّمي كيف تحوّلين التجارب والأفكار إلى قصص تُروى.</p></header>
+<main>
+<div class="stats">
+<div class="stat"><b id="count">0</b><span class="muted">قصة محفوظة</span></div>
+<div class="stat"><b id="days">0</b><span class="muted">أيام تدريب</span></div>
+<div class="stat"><b id="lessons">0</b><span class="muted">دروس مكتملة</span></div>
+</div>
+<nav>
+<button class="active" data-view="home">الرئيسية</button><button data-view="learn">التعلّم</button><button data-view="practice">التدريب</button><button data-view="journal">دفتر القصص</button>
+</nav>
+<section id="home">
+<div class="card"><span class="tag">خطوتك اليوم</span><h2>لحظة لا تُنسى</h2><p>اختاري لحظة صغيرة بقيت في ذاكرتك. ما الذي حدث؟ ماذا شعرتِ؟ وما الذي تغيّر بعدها؟</p><button class="btn primary" onclick="show('practice')">ابدئي الكتابة</button></div>
+<div class="card"><h2>مسارك في حكاية</h2><p>من المبادئ الأساسية إلى بناء الشخصيات والحبكة والحوار، ثم تطوير أسلوبك الخاص.</p><button class="btn" onclick="show('learn')">عرض الدروس</button></div>
+</section>
+<section id="learn" class="hidden">
+<div class="card lesson"><span class="tag">الدرس 1 · مكتمل عند الضغط</span><h2>ما الذي يجعل الحكاية قصة؟</h2>
+<p>القصة ليست مجرد أحداث متتابعة؛ إنها تجربة تتغير فيها شخصية أو نظرة أو علاقة.</p>
+<ul><li><b>الشخصية:</b> من نتابع؟ وماذا تريد؟</li><li><b>الزمان والمكان:</b> أين ومتى تقع الأحداث؟</li><li><b>الصراع:</b> ما العائق أو التوتر؟</li><li><b>التحوّل:</b> ما الذي تغيّر في النهاية؟</li></ul>
+<p><b>قاعدة عملية:</b> شخصية تريد شيئاً، تواجه عائقاً، وتتخذ قراراً يغيّر شيئاً.</p>
+<button class="btn primary" onclick="completeLesson()">أنهيت الدرس</button></div>
+<div class="card"><h3>الدروس القادمة</h3><p>بناء الشخصية · صناعة الحبكة · المشهد والحوار · الوصف دون إطالة · الإيقاع والنهاية · الحكي الشفهي ولغة الجسد.</p></div>
+</section>
+<section id="practice" class="hidden">
+<div class="card"><h2>مساحة التدريب</h2><p class="muted">اكتبي مباشرة، أو استخدمي الإملاء الصوتي في لوحة مفاتيح هاتفك للتدريب الشفهي.</p>
+<label>عنوان القصة</label><input id="title" placeholder="مثلاً: ذلك الصباح المختلف">
+<label>طريقة التدريب</label><select id="mode"><option>كتابة</option><option>حكي شفهي (استخدمي الإملاء الصوتي)</option></select>
+<label>قصتك</label><textarea id="body" placeholder="ابدئي بالمشهد... ماذا حدث؟"></textarea>
+<div class="row"><button class="btn primary" onclick="saveStory()">احفظي القصة</button><button class="btn" onclick="coach()">اطلبي تقييماً</button></div>
+<p class="muted" id="feedback"></p></div>
+</section>
+<section id="journal" class="hidden"><div class="card"><h2>دفتر قصصك</h2><div id="stories"></div><button class="btn" onclick="exportStories()">تصدير القصص TXT</button></div></section>
+</main><footer>حكاية · مساحة آمنة للتجربة والتحسّن، قصة بعد قصة.</footer>
+<script>
+const $=id=>document.getElementById(id);
+let stories=JSON.parse(localStorage.getItem('hikayaStories')||'[]');
+let days=JSON.parse(localStorage.getItem('hikayaDays')||'[]');
+let done=localStorage.getItem('hikayaLesson')==='1';
+function stats(){$('count').textContent=stories.length;$('days').textContent=days.length;$('lessons').textContent=done?1:0}
+function show(v){document.querySelectorAll('main>section').forEach(s=>s.classList.add('hidden'));$(v).classList.remove('hidden');document.querySelectorAll('nav button').forEach(b=>b.classList.toggle('active',b.dataset.view===v));if(v==='journal')render()}
+document.querySelectorAll('nav button').forEach(b=>b.onclick=()=>show(b.dataset.view));
+function completeLesson(){done=true;localStorage.setItem('hikayaLesson','1');stats();alert('أحسنتِ! تم تسجيل إكمال الدرس.')}
+function saveStory(){let t=$('title').value.trim(),b=$('body').value.trim();if(!b){alert('اكتبي جزءاً من قصتك أولاً.');return}stories.unshift({title:t||'قصة دون عنوان',body:b,mode:$('mode').value,date:new Date().toLocaleDateString('ar')});localStorage.setItem('hikayaStories',JSON.stringify(stories));let d=new Date().toISOString().slice(0,10);if(!days.includes(d))days.push(d);localStorage.setItem('hikayaDays',JSON.stringify(days));$('title').value='';$('body').value='';stats();$('feedback').textContent='حُفظت قصتك على هذا الجهاز.'}
+function coach(){let t=$('title').value,b=$('body').value;if(!b.trim()){alert('أضيفي نصاً أولاً لطلب التقييم.');return}let p=`قيّم قصتي بالعربية كمدرّب سرد متوازن: شجّعني بصدق، وكن نقدياً ودقيقاً. أعطني درجة من 10 لكل معيار: وضوح الفكرة، بناء الشخصية، تسلسل الأحداث، الصراع/التوتر، الوصف والحوار، النهاية، والأثر العاطفي. ثم اذكر 3 نقاط قوة، و3 تحسينات محددة، واقترح إعادة صياغة لمقطع واحد دون تغيير صوتي. العنوان: ${t}\\nالنص: ${b}`;navigator.clipboard?.writeText(p).then(()=>$('feedback').textContent='نُسخ طلب التقييم. الصقيه في محادثة ChatGPT للحصول على تصحيح مفصل.').catch(()=>$('feedback').textContent=p);if(!navigator.clipboard)$('feedback').textContent=p}
+function render(){$('stories').innerHTML=stories.length?stories.map((s,i)=>`<div class="story"><b>${escapeHtml(s.title)}</b><div class="muted">${s.date} · ${s.mode}</div><p>${escapeHtml(s.body).replaceAll('\\n','<br>')}</p><button class="btn" onclick="del(${i})">حذف</button></div>`).join(''):'<p class="muted">لم تحفظي قصصاً بعد. ابدئي بتدريب صغير.</p>'}
+function del(i){stories.splice(i,1);localStorage.setItem('hikayaStories',JSON.stringify(stories));stats();render()}
+function escapeHtml(s){return s.replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function exportStories(){let txt=stories.map(s=>`${s.title}\\n${s.date}\\n${s.body}`).join('\\n\\n---\\n\\n');let a=document.createElement('a');a.href=URL.createObjectURL(new Blob([txt],{type:'text/plain;charset=utf-8'}));a.download='hikaya-stories.txt';a.click();URL.revokeObjectURL(a.href)}
+if('serviceWorker'in navigator)window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js'));
+stats();
+</script></body></html>
